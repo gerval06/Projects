@@ -1,0 +1,6 @@
+C:\Users\Gerhard Valcl\Documents\CSharp\speechTest\speechTest\bin\Debug\speechTest.exe
+C:\Users\Gerhard Valcl\Documents\CSharp\speechTest\speechTest\bin\Debug\speechTest.pdb
+C:\Users\Gerhard Valcl\Documents\CSharp\speechTest\speechTest\obj\x86\Debug\speechTest.Properties.Resources.resources
+C:\Users\Gerhard Valcl\Documents\CSharp\speechTest\speechTest\obj\x86\Debug\speechTest.csproj.GenerateResource.Cache
+C:\Users\Gerhard Valcl\Documents\CSharp\speechTest\speechTest\obj\x86\Debug\speechTest.exe
+C:\Users\Gerhard Valcl\Documents\CSharp\speechTest\speechTest\obj\x86\Debug\speechTest.pdb
