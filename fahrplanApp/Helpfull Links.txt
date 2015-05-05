@@ -15,3 +15,4 @@ http://stackoverflow.com/questions/804992/how-to-consume-xml-from-restful-web-se
 
 OpenData Linz
 http://data.linz.gv.at/daten/LinzAGLinien/
+http://data.linz.gv.at/katalog/linz_ag/linz_ag_linien/linien/2015/
