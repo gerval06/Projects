@@ -1,0 +1,4 @@
+C:\Users\Gerhard\Documents\Projects\fahrplanApp\Csharp\Fahrplan_console\bin\Debug\Fahrplan_console.exe
+C:\Users\Gerhard\Documents\Projects\fahrplanApp\Csharp\Fahrplan_console\bin\Debug\Fahrplan_console.pdb
+C:\Users\Gerhard\Documents\Projects\fahrplanApp\Csharp\Fahrplan_console\obj\x86\Debug\Fahrplan_console.exe
+C:\Users\Gerhard\Documents\Projects\fahrplanApp\Csharp\Fahrplan_console\obj\x86\Debug\Fahrplan_console.pdb
