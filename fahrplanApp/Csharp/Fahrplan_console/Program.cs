@@ -1,4 +1,14 @@
-﻿using System;
+﻿/* Fahrplan Console Application
+ * 
+ * This is a application to realize access to to public transportation system of the city of Linz Austria.
+ * 
+ * Author: Gerhard Valcl,Bsc
+ * 
+ * v0.1: Implemented menu and xml output to console
+ * v0.2: Implemented first HTTP request for the departure time at the WIFI Linz AG station
+**/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,31 +22,39 @@ namespace Fahrplan_console
 {
     class Program
     {
+        private static string sLinzAgURL = "http://www.linzag.at/static/";
+
         static void Main(string[] args)
         {
             /* Variable Declaration */
             string sInput = "empty";
-            string sResponseFromServer;
-            string sLinzAgURL = "http://www.linzag.at/static/";
+            Int64 iSessionID = 0;
 
+            XDocument xDoc = new XDocument();
+            /* Create objects for xml output to Console */ 
             StringBuilder strBuilder = new StringBuilder();
             XmlWriterSettings xmlSettings = new XmlWriterSettings();
             xmlSettings.OmitXmlDeclaration = true;
             xmlSettings.Indent = true;
 
             XmlWriter xmlWriter = XmlWriter.Create(strBuilder, xmlSettings);
-            //Console.Write("Fahrplan Console: \n");
-            //Console.Write("1. Abfahrtszeiten\n");
-            //Console.Write("2. Route\n");
-            //Console.Write("Aufgabe wählen: ");
-            //Input = Console.ReadLine();
+
+            //xDoc.WriteTo(xmlWriter);
+            //Console.WriteLine(strBuilder.ToString());
+
             while (true)
             {
                 Console.Clear();
                 switch (sInput)
                 {
                     case "1":
+                        xDoc = InitSession("XML_DM_REQUEST?",0, "&locationServerActive=1&type_dm=any&name_dm=WIFI%20Linz%20AG&limit=20");
+                        iSessionID = (Int64)xDoc.Root.Attribute("sessionID");
+                        xDoc = InitSession("XML_DM_REQUEST?",iSessionID, "&requestID=1&dmLineSelectionAll=1");
+                        xDoc.WriteTo(xmlWriter);
+                        Console.WriteLine(strBuilder.ToString());
                         sInput = "empty";
+                        Console.ReadLine();
                         break;
 
                     case "2":
@@ -44,26 +62,10 @@ namespace Fahrplan_console
                         break;
 
                     case "3":
-                        //WebRequest request = WebRequest.Create(sLinzAgURL + "XML_TRIP_REQUEST2?");
-                        //WebResponse response = request.GetResponse();
-
-                        //Console.WriteLine(((HttpWebResponse)response).StatusDescription);
-                        //Stream DataStream = response.GetResponseStream();
-                        //StreamReader Reader = new StreamReader(DataStream);
-                        //sResponseFromServer = Reader.ReadToEnd();
-                        //Console.WriteLine(sResponseFromServer);
-
-                        //Reader.Close();
-                        //response.Close();
-
-                        XDocument xDoc = new XDocument();
-                        xDoc = XDocument.Load(sLinzAgURL + "XML_TRIP_REQUEST2?");
-
-                        xDoc.WriteTo(xmlWriter);
-
-                        Console.WriteLine(strBuilder.ToString());
+                        Console.Clear();
+                        Console.Write("SessionID = " + iSessionID);
                         sInput = "empty";
-                        Console.Read();
+                        Console.ReadLine();
                         break;
 
                     default:
@@ -85,7 +87,19 @@ namespace Fahrplan_console
             }
 
             Console.Write("Programm wird beendet. (Press Return !)");
-            Console.Read();
+            Console.ReadLine();
+        }
+
+        /* Initialize Session */
+        public static XDocument InitSession(string sRequestTyp, Int64 SessionID, string sSessionArgs="")
+        {
+            Int64 iSessionID = -1;
+            XDocument xDoc = new XDocument();
+            xDoc = XDocument.Load(sLinzAgURL + sRequestTyp +"sessionID="+ SessionID + sSessionArgs);
+
+            iSessionID = (Int64)xDoc.Root.Attribute("sessionID");
+
+            return xDoc;
         }
     }
 }
