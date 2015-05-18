@@ -1,2 +1,2 @@
 # Projects
-Folder for all coding Projects
+Repository for all coding Projects

@@ -48,7 +48,8 @@ namespace Fahrplan_console
                 switch (sInput)
                 {
                     case "1":
-                        xDoc = InitSession("XML_DM_REQUEST?",0, "&locationServerActive=1&type_dm=any&name_dm=WIFI%20Linz%20AG&limit=20");
+                        // WIFI%20Linz%20AG
+                        xDoc = InitSession("XML_DM_REQUEST?", 0, "&locationServerActive=1&type_dm=any&name_dm=WIFI%20Linz%20AG&limit=5");
                         iSessionID = (Int64)xDoc.Root.Attribute("sessionID");
                         xDoc = InitSession("XML_DM_REQUEST?",iSessionID, "&requestID=1&dmLineSelectionAll=1");
                         xDoc.WriteTo(xmlWriter);
